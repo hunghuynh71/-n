@@ -18,10 +18,22 @@ namespace DAO
             { Tendangnhap = p.TENDANGNHAP, Matkhau = p.MATKHAU, Loaitaikhoan = p.LOAITAIKHOAN, Tennv=p.NHAN_VIEN.TENNV}).ToList();
         }
 
-        public TaiKhoanDTO TimKiemTK(string tenDN)
+        public List<TaiKhoanDTO> TimKiemTK(string tenDN)
         {
             return db.TAI_KHOAN.Where(p => p.TRANGTHAIXOA == false && p.TENDANGNHAP == tenDN).Select(p => new TaiKhoanDTO 
-            { Tendangnhap = p.TENDANGNHAP, Matkhau = p.MATKHAU, Loaitaikhoan = p.LOAITAIKHOAN, Manv = p.MANV }).SingleOrDefault();
+            { Tendangnhap = p.TENDANGNHAP, Matkhau = p.MATKHAU, Loaitaikhoan = p.LOAITAIKHOAN, Manv = p.MANV }).ToList();
+        }
+
+        public string TimKiemTenTK(string tenDN)
+        {
+            return db.TAI_KHOAN.Where(p => p.TRANGTHAIXOA == false && p.TENDANGNHAP == tenDN).Select(p => new TaiKhoanDTO { Tendangnhap = p.TENDANGNHAP, Matkhau = p.MATKHAU, Loaitaikhoan = p.LOAITAIKHOAN, Manv = p.MANV }).SingleOrDefault().Tendangnhap;
+        }
+
+        public bool KttontaiTK(string tenDN)
+        {
+            if (TimKiemTenTK(tenDN) == null)
+                return true;
+            return false;
         }
 
         public string MaHoaChuoi(string input)
@@ -48,16 +60,23 @@ namespace DAO
             try
             {
                 //Lưu ý do dùng TENDANGNHAP làm khóa nên khi thêm 1 tên ĐN trùng với 1 tên đã có thì sẽ thêm thất bại
-                TAI_KHOAN tkDB = new TAI_KHOAN
+                if (TimKiemTK(tk.Tendangnhap).Count>0)
                 {
-                    TENDANGNHAP=tk.Tendangnhap,
-                    MATKHAU = MaHoaChuoi(tk.Matkhau),
-                    LOAITAIKHOAN=tk.Loaitaikhoan,
-                    MANV=tk.Manv
-                };
-                db.TAI_KHOAN.Add(tkDB);
-                db.SaveChanges();
-                return true;
+                    return false;
+                }
+                else
+                {
+                    TAI_KHOAN tkDB = new TAI_KHOAN
+                    {
+                        TENDANGNHAP = tk.Tendangnhap,
+                        MATKHAU = MaHoaChuoi(tk.Matkhau),
+                        LOAITAIKHOAN = tk.Loaitaikhoan,
+                        MANV = tk.Manv
+                    };
+                    db.TAI_KHOAN.Add(tkDB);
+                    db.SaveChanges();
+                    return true;
+                }
             }
             catch
             {

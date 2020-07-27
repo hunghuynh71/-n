@@ -41,17 +41,17 @@ namespace DoAn_Winform
         {
             TaiKhoanBUS tkbus = new TaiKhoanBUS();
             if (txtMatKhauCu.Text == "" || txtMatKhauMoi.Text == "" || txtNhapLaiMatKhau.Text == "")
-                MessageBox.Show("Không Để Trống", "Thông Báo");
+                MessageBox.Show(Instance.TBNhapThieuTT, Instance.CanhBao);
             else if(txtMatKhauCu.Text == txtMatKhauMoi.Text)
-                MessageBox.Show("Mật Khẩu Mới Trùng Mật Khẩu Cũ", "Thông Báo");
+                MessageBox.Show(Instance.TBMkMoiPhaiGiongMkCu, Instance.CanhBao);
             else if (txtMatKhauMoi.Text != txtNhapLaiMatKhau.Text)
-                MessageBox.Show("Nhập Lại Mật Khẩu Mới Không Đúng", "Thông Báo");
+                MessageBox.Show(Instance.TBNhapLaiMkMoiKhongDung, Instance.CanhBao);
             else
             {
                 if(tkbus.SuaTK(TaiKhoanGlobal,txtMatKhauCu.Text,txtMatKhauMoi.Text))
-                    MessageBox.Show("Thành Công", "Thông Báo");
+                    MessageBox.Show(Instance.TBCapNhatMkThanhCong, Instance.ThongBao);
                 else
-                    MessageBox.Show("Sai Mật Khẩu Củ", "Thông Báo");
+                    MessageBox.Show(Instance.TBNhapSaiMkCu, Instance.ThatBai);
             }
             txtMatKhauCu.Text = string.Empty;
             txtMatKhauMoi.Text = string.Empty;
@@ -64,12 +64,17 @@ namespace DoAn_Winform
         {
             if (txtMatKhauCu.Text != "" || txtMatKhauMoi.Text != "" || txtNhapLaiMatKhau.Text != "")
             {
-                DialogResult res = MessageBox.Show("Chưa Thây Đổi Tài Khoản Muốn Ở Chỉnh Sửa Không ", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (res == DialogResult.No)
+                DialogResult res = MessageBox.Show(Instance.XacNhanThoat, Instance.XacNhan, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (res == DialogResult.Yes)
                     this.Close();
             }
             else
                 this.Close();
+        }
+
+        private void frmAccount_Load(object sender, EventArgs e)
+        {
+
         }
 
     }

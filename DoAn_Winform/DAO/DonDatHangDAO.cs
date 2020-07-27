@@ -55,16 +55,24 @@ namespace DAO
 
         public List<DonDatHangDTO> LoadDsDDHDaDuyet(DateTime tuNgay, DateTime denNgay)
         {
-            return db.DON_DAT_HANG.Where(p => p.TRANGTHAIXOA == false && p.TRANGTHAIDUYET == true && p.NGAYLAP > tuNgay && p.NGAYLAP < denNgay).OrderByDescending(p => p.MADDH).Select(p => new DonDatHangDTO
-            {
-                Maddh = p.MADDH,
-                Ngaylap = p.NGAYLAP.Value,
-                Manvlap = p.MANVLAP,
-                Mancc = p.MANCC,
-                Ngaygiao = p.NGAYGIAO,
-                Trangthaiduyet = p.TRANGTHAIDUYET,
-                Tennvlap = p.NHAN_VIEN.TENNV
-            }).ToList();
+            return db.DON_DAT_HANG.Where(p => p.TRANGTHAIXOA == false && p.TRANGTHAIDUYET == true &&
+                ((p.NGAYLAP.Value.Year == tuNgay.Year && p.NGAYLAP.Value.Month == tuNgay.Month && p.NGAYLAP.Value.Day >= tuNgay.Day) ||
+                (p.NGAYLAP.Value.Year == tuNgay.Year && p.NGAYLAP.Value.Month > tuNgay.Month) ||
+                (p.NGAYLAP.Value.Year > tuNgay.Year))
+                &&
+                ((p.NGAYLAP.Value.Year == denNgay.Year && p.NGAYLAP.Value.Month == denNgay.Month && p.NGAYLAP.Value.Day <= denNgay.Day) ||
+                (p.NGAYLAP.Value.Year == denNgay.Year && p.NGAYLAP.Value.Month < denNgay.Month) ||
+                (p.NGAYLAP.Value.Year < denNgay.Year))
+                ).OrderByDescending(p => p.MADDH).Select(p => new DonDatHangDTO
+                {
+                    Maddh = p.MADDH,
+                    Ngaylap = p.NGAYLAP.Value,
+                    Manvlap = p.MANVLAP,
+                    Mancc = p.MANCC,
+                    Ngaygiao = p.NGAYGIAO,
+                    Trangthaiduyet = p.TRANGTHAIDUYET,
+                    Tennvlap = p.NHAN_VIEN.TENNV
+                }).ToList();
         }
 
         public bool ThemDDH(DonDatHangDTO ddh, out int maDDH)
@@ -146,6 +154,10 @@ namespace DAO
         public void DuyetDDH(int maDDH)
         {
             DON_DAT_HANG ddhTam = db.DON_DAT_HANG.Where(p => p.MADDH == maDDH && p.TRANGTHAIDUYET == false).SingleOrDefault();
+            if(ddhTam==null)
+            {
+                return;
+            }
             ddhTam.TRANGTHAIDUYET = true;
             db.SaveChanges();
         }

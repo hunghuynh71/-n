@@ -29,7 +29,8 @@ namespace DAO
                 BAN banDB = new BAN()
                 {
                     SOCHO = ban.Socho,
-                    TENBAN = ban.Tenban
+                    TENBAN = ban.Tenban,
+                    TRANGTHAI=Instance.TrangThaiBanTrong
                 };
                 db.BANs.Add(banDB);
                 db.SaveChanges();
@@ -61,7 +62,9 @@ namespace DAO
         {
             try
             {
-                BAN banDB = db.BANs.SingleOrDefault(p => p.SOBAN == maBan && p.TRANGTHAI != 0);
+                BAN banDB = db.BANs.SingleOrDefault(p => p.SOBAN == maBan && p.TRANGTHAI == 1);
+                if (banDB == null)
+                    return false;
                 banDB.TRANGTHAI = 0;
                 db.SaveChanges();
                 return true;

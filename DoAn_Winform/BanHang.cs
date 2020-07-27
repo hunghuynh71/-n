@@ -31,7 +31,7 @@ namespace DoAn_Winform
        
         #region Method
         private void frmBanHang_Load(object sender, EventArgs e)
-        {
+        {           
             LoadDsBan(BanGlobal);
             LoadcboChuyenBan();
             LoadcboLoaiThucUong();
@@ -44,13 +44,18 @@ namespace DoAn_Winform
 
             foreach(BanDTO item in dsBan)
             {
-                Button button = new Button() { Width=120, Height=120};
+                Button button = new Button() { Width = Instance.ChieuDaiBan, Height = Instance.ChieuRongBan};
 
                 button.Click += button_Click;           
-                button.Tag = item;                
+                button.Tag = item;
+
+                button.Image = Image.FromFile(Instance.HinhAnhBan);
+                button.ImageAlign=ContentAlignment.MiddleLeft;
+                button.TextAlign = ContentAlignment.MiddleRight;
+
                 if(item.Trangthai == 1)
                 {
-                    button.Text = item.Tenban + "\nTrống";
+                    button.Text = item.Tenban + Instance.BanTrong;
                     if (banglobal.Soban != item.Soban)
                         button.BackColor = Color.LightGreen;
                     else
@@ -58,7 +63,7 @@ namespace DoAn_Winform
                 }
                 else if (item.Trangthai == 2)
                 {
-                    button.Text = item.Tenban + "\nCó người";
+                    button.Text = item.Tenban + Instance.BanKhongTrong;
                     if (banglobal.Soban != item.Soban)
                          button.BackColor = Color.LightPink;
                     else
@@ -156,11 +161,11 @@ namespace DoAn_Winform
         }
         private void btnThemThucUong_Click(object sender, EventArgs e)
         {
-            if (cboThucUong.Text != null && cboLoaiThucUong != null)
+            if (cboThucUong.Text != "" && cboLoaiThucUong.Text != "")
             {
                 if (hdbus.ThemThucUongTheoBan(BanGlobal, TaiKhoanGlobal.Manv, cboThucUong.Text, cboLoaiThucUong.Text, Convert.ToInt32(nmrSoLuong.Value)))
                 { 
-                    MessageBox.Show("Thêm Thành Công", "Thông Báo");
+                    MessageBox.Show(Instance.TBThemThanhCong, Instance.ThanhCong);
                     btnThanhToan.Enabled = true;
                     btnChuyenBan.Enabled = true;
                     BanGlobal.Trangthai = 2;
@@ -168,27 +173,27 @@ namespace DoAn_Winform
                     LoadDsBan(BanGlobal);
                 }
                 else
-                    MessageBox.Show("Thêm Thất Bại", "Thông Báo");
+                    MessageBox.Show(Instance.TBThemThatBai, Instance.Loi);
             }
             else
-                MessageBox.Show("Chưa Đầy Đủ Thông Tin Thức Uống", "Thông Báo");
+                MessageBox.Show(Instance.TBNhapThieuTT, Instance.CanhBao);
         }
 
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
-            DialogResult mes = MessageBox.Show("Ông Có Chắc Là Ông Muốn Thanh Toán Không ", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult mes = MessageBox.Show(Instance.HoiXacNhanThanhToan, Instance.XacNhan, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if(mes==DialogResult.Yes)
             {
                 if (hdbus.ThanhToan(BanGlobal,Convert.ToDouble(txtTongTien.Text)))
                 {
-                    MessageBox.Show("Thanh Toán Thành Công", "Thông Báo");
+                    MessageBox.Show(Instance.TBThanhToanThanhCong, Instance.ThanhCong);
                     LoadDsBan(BanGlobal);
                     lvwHoaDon.Items.Clear();
                 }
             }   
             else
             {
-                MessageBox.Show("Đã Hủy Thanh Toán", "Thông Báo");
+                MessageBox.Show(Instance.TBDaHuyThanhToan, Instance.ThongBao);
             }    
 
         }
@@ -196,20 +201,20 @@ namespace DoAn_Winform
         {
             if (!banBUS.KiemTraBanCoNguoiChua(cboChuyenBan.Text) && cboChuyenBan.Text !="" && cboChuyenBan.Text != BanGlobal.Tenban)
             {
-                DialogResult res = MessageBox.Show("Bàn Đã Có Người. Bàn Muốn Sự Lựa Chọn Khác Không?  ", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult res = MessageBox.Show(Instance.XacNhanChuyenBan, Instance.XacNhan, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (res == DialogResult.Yes)
                 {
-                    res = MessageBox.Show(" Thêm Các Món Vào Bàn Đã Chọn (Quen Biết) ?", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    res = MessageBox.Show(Instance.HoiXacNhanThemMonVaoBanQuenBiet, Instance.ThongBao, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (res == DialogResult.Yes)
                     {
                         if (hdbus.ChuyenBan(BanGlobal, cboChuyenBan.Text,TaiKhoanGlobal.Manv))
                         { 
-                            MessageBox.Show(" Thành Công", "Thông Báo");
-                            BanGlobal.Trangthai = 0;
+                            MessageBox.Show(Instance.ThanhCong, Instance.ThongBao);
+                            BanGlobal.Trangthai = 1;
                             LoadDsBan(BanGlobal);
                         }
                         else
-                            MessageBox.Show(" Thất Bại", "Thông Báo");
+                            MessageBox.Show(Instance.ThatBai, Instance.ThongBao);
                     }
                 }
             }
@@ -217,15 +222,15 @@ namespace DoAn_Winform
             {
                 if (hdbus.ChuyenBan(BanGlobal, cboChuyenBan.Text,TaiKhoanGlobal.Manv))
                         { 
-                            MessageBox.Show(" Thành Công", "Thông Báo");
-                            BanGlobal.Trangthai = 0;
+                            MessageBox.Show(Instance.ThanhCong, Instance.ThongBao);
+                            BanGlobal.Trangthai = 1;
                             LoadDsBan(BanGlobal);
                         }
                         else
-                            MessageBox.Show("Thất Bại", "Thông Báo");
+                            MessageBox.Show(Instance.ThatBai, Instance.ThongBao);
             }
             else
-                MessageBox.Show("Thông Tin Nhập Không Đúng Hoặc Thiếu!", "Thông Báo");
+                MessageBox.Show(Instance.TBNhapThieuTT, Instance.CanhBao);
             cboChuyenBan.Text = string.Empty;
         }
      
@@ -258,7 +263,13 @@ namespace DoAn_Winform
 
         private void btnGiamGia_Click(object sender, EventArgs e)
         {
-            double tongTien = Convert.ToDouble(txtTongTien.Text);
+            //double tongTien = Convert.ToDouble(txtTongTien.Text);
+            double tongTien=0;
+            foreach(ListViewItem lvi in lvwHoaDon.Items)
+            {
+                tongTien += Convert.ToDouble(lvi.SubItems[3].Text);
+            }
+            //tongTien = Convert.ToDouble(txtTongTien.Text);
             tongTien = tongTien - (tongTien * Convert.ToDouble(nmrPhanTramGiamGia.Value) / 100);
             txtTongTien.Text = tongTien.ToString();
         }

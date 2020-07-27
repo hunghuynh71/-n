@@ -86,7 +86,7 @@ namespace DoAn_Winform
                 {
                     if (item.SubItems[2].Text == ((int)cboTenHangHoa.SelectedValue).ToString())
                     {
-                        MessageBox.Show("Hàng hóa đã được thêm gòi nha đừng thêm nữa, ahihi!", "Nhắc nhẹ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(Instance.TBHHDaTonTai, Instance.CanhBao, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         flag = false;
                     }
                 }
@@ -117,7 +117,7 @@ namespace DoAn_Winform
         {
             if (lvwChiTietDDh.Items.Count == 0)
             {
-                MessageBox.Show("Bạn chưa thêm hàng hóa vào đơn đặt hàng!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Instance.TBChuaThemHHVaoDDH, Instance.Loi, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else
@@ -140,12 +140,12 @@ namespace DoAn_Winform
                         ctDTO.Sl = Convert.ToInt32(item.SubItems[1].Text);
                         ctBUS.ThemChiTietDDH(ctDTO);
                     }
-                    MessageBox.Show("Đặt hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(Instance.TBDatHangThanhCong, Instance.ThanhCong, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadDsDDH();
                 }
                 else
                 {
-                    MessageBox.Show("Đặt hàng thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Instance.TBDatHangThatBai, Instance.Loi, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
@@ -175,7 +175,9 @@ namespace DoAn_Winform
 
         private void lvwChiTietDDh_MouseClick(object sender, MouseEventArgs e)
         {
-            BindingsHH();
+            //BindingsHH();
+            cboTenHangHoa.Text = lvwChiTietDDh.SelectedItems[0].SubItems[0].Text;
+            nmrSoLuong.Value = Convert.ToInt32(lvwChiTietDDh.SelectedItems[0].SubItems[1].Text);
         }
 
         private void dtgvDsDDH_MouseClick(object sender, MouseEventArgs e)
@@ -208,13 +210,13 @@ namespace DoAn_Winform
             DonDatHangBUS ddhBUS = new DonDatHangBUS();
             if(ddhBUS.XoaDDH(maDDH))
             {
-                MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Instance.TBXoaThanhCong, Instance.ThanhCong, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadDsDDH();
                 lvwChiTietDDh.Items.Clear();
             }
             else
             {
-                MessageBox.Show("Xóa thất bại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Instance.TBXoaThatBai, Instance.Loi, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

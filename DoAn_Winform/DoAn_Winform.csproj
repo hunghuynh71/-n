@@ -11,6 +11,8 @@
     <AssemblyName>DoAn_Winform</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -23,10 +25,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -48,6 +48,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Kzzu-I-Love-You-Coffee.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
@@ -345,6 +348,75 @@
       <Project>{fbfa8539-0769-4bc0-864d-11ec7bf8d92a}</Project>
       <Name>DAO</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ChiaKho.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Thoat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GiaoDienLogin.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HoanThanhSize48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\timkiem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ngaySize48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cong.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tru.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cole.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\caiBan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TraCuuSize48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BieuDoDuongThongKe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GiaoDIenbieuDoThogKE.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ThungracSize48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LuaChonSize48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\timkiemSize48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QuanLySize48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ketoan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\khohang.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\O_Kho.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nhacungcapSize48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\quan-cafe-dep-seoul.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Kzzu-I-Love-You-Coffee.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

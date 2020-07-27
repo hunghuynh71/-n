@@ -47,7 +47,7 @@ namespace DoAn_Winform
         void LoadComboboxDDH()
         {
             DonDatHangBUS ddhBUS = new DonDatHangBUS();
-            cboDonDatHang.DataSource = ddhBUS.LoadDsDDH();
+            cboDonDatHang.DataSource = ddhBUS.LoadDsDDHDaDuyet();
             cboDonDatHang.DisplayMember = "Maddh";
             cboDonDatHang.ValueMember = "Maddh";
         }
@@ -110,9 +110,9 @@ namespace DoAn_Winform
         private void btnThem_Click(object sender, EventArgs e)
         {
             if (txtGia.Text == "")
-                MessageBox.Show("Bạn chưa nhập giá", "Nhắc nhẹ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Instance.TBChuaNhapGia, Instance.CanhBao, MessageBoxButtons.OK, MessageBoxIcon.Information);
             else if (!IsNumber(txtGia.Text))
-                MessageBox.Show("Nhập giá chưa đúng định dạng, giá phải là số (số nguyên hoặc số thực)", "Nhắc nhẹ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Instance.TBNhapGiaChuaDungDinhDang, Instance.CanhBao, MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
             {
                 HangHoaBUS hhBUS = new HangHoaBUS();
@@ -128,9 +128,9 @@ namespace DoAn_Winform
                     bool flag = true;
                     foreach (ListViewItem item in lvwChiTietPhieuNhap.Items)
                     {
-                        if (item.SubItems[3].Text == ((int)cmbTenHangHoa.SelectedValue).ToString())
+                        if (item.SubItems[4].Text == ((int)cmbTenHangHoa.SelectedValue).ToString())
                         {
-                            MessageBox.Show("Hàng hóa đã được thêm gòi nha đừng thêm nữa, ahihi!", "Nhắc nhẹ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(Instance.TBHHDaTonTai, Instance.CanhBao, MessageBoxButtons.OK, MessageBoxIcon.Information);
                             flag = false;
                         }
                     }
@@ -154,16 +154,16 @@ namespace DoAn_Winform
 
             catch (Exception r)
             {
-                MessageBox.Show("Hãy chọn háng hóa muốn xòa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Instance.TBHayChonHangDeXoa, Instance.ThongBao, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
             if (txtGia.Text == "")
-                MessageBox.Show("Bạn chưa nhập giá", "Nhắc nhẹ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Instance.TBChuaNhapGia, Instance.CanhBao, MessageBoxButtons.OK, MessageBoxIcon.Information);
             else if (!IsNumber(txtGia.Text))
-                MessageBox.Show("Nhập giá chưa đúng định dạng, giá phải là số (số nguyên hoặc số thực)", "Nhắc nhẹ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Instance.TBNhapGiaChuaDungDinhDang, Instance.CanhBao, MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
             {
                 try
@@ -173,11 +173,11 @@ namespace DoAn_Winform
                     lv.SubItems[2].Text = txtGia.Text;
                     double thanhTien = Convert.ToDouble(lv.SubItems[1].Text) * Convert.ToDouble(lv.SubItems[2].Text);
                     lv.SubItems[3].Text = thanhTien.ToString();
-                    MessageBox.Show("Sữa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(Instance.TBSuaThanhCong, Instance.ThongBao, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception r)
                 {
-                    MessageBox.Show("Hãy chọn háng hóa muốn sửa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(Instance.TBHayChonHangDeSua, Instance.ThongBao, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -186,7 +186,7 @@ namespace DoAn_Winform
         {
             if (lvwChiTietPhieuNhap.Items.Count == 0)
             {
-                MessageBox.Show("Bạn chưa thêm hàng hóa vào đơn đặt hàng!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Instance.TBChuaThemHHVaoDDH, Instance.Loi, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else
@@ -196,7 +196,7 @@ namespace DoAn_Winform
                 {
                     if (item.SubItems[2].Text=="")
                     {
-                        MessageBox.Show("Bạn chưa nhập đầy đủ giá, hãy nhập thêm giá!", "Nhập thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(Instance.TBChuaNhapDayDuGia, Instance.CanhBao, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     else
@@ -219,16 +219,16 @@ namespace DoAn_Winform
 
                         ctDTO.Mapnh = mapnh;
                         ctDTO.Mahh = Convert.ToInt32(item.SubItems[4].Text);
-                        ctDTO.Soluong = Convert.ToInt32(item.SubItems[2].Text);
-                        ctDTO.Gia = Convert.ToInt32(item.SubItems[1].Text);
+                        ctDTO.Soluong = Convert.ToInt32(item.SubItems[1].Text);
+                        ctDTO.Gia = Convert.ToInt32(item.SubItems[2].Text);
                         ctBUS.ThemChiTietPNH(ctDTO);
                     }
-                    MessageBox.Show("Tạo phiếu nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(Instance.TBTaoPhieuNhapThanhCong, Instance.ThanhCong, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadDsPNH();
                 }
                 else
                 {
-                    MessageBox.Show("Tạo phiếu nhập thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Instance.TBTaoPhieuNhapThatBai, Instance.Loi, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

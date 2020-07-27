@@ -24,7 +24,6 @@ namespace DAO
         public System.DateTime NGAYLAP { get; set; }
         public int MANVLAP { get; set; }
         public int MADDH { get; set; }
-        public bool TRANGTHAIXOA { get; set; }
         public double TONGTIEN { get; set; }
     
         public virtual ICollection<CHI_TIET_PHIEU_NHAP_HANG> CHI_TIET_PHIEU_NHAP_HANG { get; set; }

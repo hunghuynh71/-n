@@ -36,7 +36,7 @@ namespace DAO
         public List<HoaDonDTO> LoadDsHDTrongNgay()
         {
             List<HoaDonDTO> kq = new List<HoaDonDTO>();
-            kq = db.HOA_DON.Where(p => p.TRANGTHAIXOA == false && p.NGAYLAP.Day == DateTime.Now.Day && p.NGAYLAP.Month == DateTime.Now.Month && p.NGAYLAP.Year == DateTime.Now.Year && p.TRANGTHAI == 1).Select(p => new HoaDonDTO
+            kq = db.HOA_DON.Where(p => p.NGAYLAP.Day == DateTime.Now.Day && p.NGAYLAP.Month == DateTime.Now.Month && p.NGAYLAP.Year == DateTime.Now.Year && p.TRANGTHAI == 1).Select(p => new HoaDonDTO
             {
                 Mahd = p.MAHD,
                 Tennvlap = p.NHAN_VIEN.TENNV,
@@ -55,7 +55,7 @@ namespace DAO
             {
                 //Lay Thong Tin Thuc Uong Theo TenTu Va Loai Tu
                 THUC_UONG MonAn = new THUC_UONG();
-                MonAn = db.THUC_UONG.Where(u => u.TRANGTHAIXOA == false && u.TENTU == TenTU && u.LOAI_THUC_UONG.TENLOAITU == LoaiTU).SingleOrDefault();
+                MonAn = db.THUC_UONG.Where(u => u.TENTU == TenTU && u.LOAI_THUC_UONG.TENLOAITU == LoaiTU).SingleOrDefault();
                 
                 //Lap Hoa Don
                 if (ban.Trangthai == 1)
@@ -68,7 +68,6 @@ namespace DAO
                     {
                         SOBAN = ban.Soban,
                         NGAYLAP = DateTime.Now,
-                        TRANGTHAIXOA = false,
                         TRANGTHAI = 0,
                         MANVLAP = MaNVLap
                     };
@@ -144,7 +143,7 @@ namespace DAO
                     banCu.TRANGTHAI = 1;
                     banMoi.TRANGTHAI = 2;
                     HOA_DON hd = new HOA_DON();
-                    hd = db.HOA_DON.Where(u => u.SOBAN == banHienTai.Soban && u.TRANGTHAI == 0 && u.TRANGTHAIXOA == false).SingleOrDefault();
+                    hd = db.HOA_DON.Where(u => u.SOBAN == banHienTai.Soban && u.TRANGTHAI == 0).SingleOrDefault();
                     hd.SOBAN = banMoi.SOBAN;
                     db.SaveChanges();
                 }
@@ -153,7 +152,7 @@ namespace DAO
                     banCu.TRANGTHAI = 1;
                     //Lay
                     HOA_DON hd = new HOA_DON();
-                    hd = db.HOA_DON.Where(u => u.SOBAN == banMoi.SOBAN && u.TRANGTHAI == 0 && u.TRANGTHAIXOA == false).SingleOrDefault();
+                    hd = db.HOA_DON.Where(u => u.SOBAN == banMoi.SOBAN && u.TRANGTHAI == 0).SingleOrDefault();
                     //  ThemVao Database
                     int MaHDCU = db.HOA_DON.Where(u=> u.SOBAN == banHienTai.Soban && u.TRANGTHAI==0).SingleOrDefault().MAHD;
 
@@ -200,7 +199,7 @@ namespace DAO
         
         public List<HoaDonDTO> LoadDsHD()
         {
-            return db.HOA_DON.Where(p => p.TRANGTHAIXOA == false).Select(p => new HoaDonDTO
+            return db.HOA_DON.Select(p => new HoaDonDTO
             {
                 Mahd = p.MAHD,
                 Ngaylap = p.NGAYLAP,
@@ -213,14 +212,22 @@ namespace DAO
         public List<HoaDonDTO> loadDoanhThu_FrmAmin(bool TraCuuTheoNgay,DateTime Start , DateTime End)
         {
             ChiTietHoaDonDAO cthd = new ChiTietHoaDonDAO();
-            List<HoaDonDTO> kq=db.HOA_DON.Where(u => u.TRANGTHAIXOA == false && u.TRANGTHAI == 1 && (TraCuuTheoNgay == true ? u.NGAYLAP >= Start && u.NGAYLAP <= End : true)).Select(v => new HoaDonDTO
-            {
-                Mahd = v.MAHD,
-                Ngaylap = v.NGAYLAP,
-                Tenban = v.BAN.TENBAN,
-                Tennvlap = v.NHAN_VIEN.TENNV,
-                Tongtien = v.TONGTIEN
-            }).ToList();
+            List<HoaDonDTO> kq = db.HOA_DON.Where(p => p.TRANGTHAI == 1 && (TraCuuTheoNgay == true ?
+                (((p.NGAYLAP.Year == Start.Year && p.NGAYLAP.Month == Start.Month && p.NGAYLAP.Day >= Start.Day) ||
+                (p.NGAYLAP.Year == Start.Year && p.NGAYLAP.Month > Start.Month) ||
+                (p.NGAYLAP.Year > Start.Year))
+                &&
+                ((p.NGAYLAP.Year == End.Year && p.NGAYLAP.Month == End.Month && p.NGAYLAP.Day <= End.Day) ||
+                (p.NGAYLAP.Year == End.Year && p.NGAYLAP.Month < End.Month) ||
+                (p.NGAYLAP.Year < End.Year)))
+                : true)).Select(p => new HoaDonDTO
+                {
+                    Mahd = p.MAHD,
+                    Ngaylap = p.NGAYLAP,
+                    Tenban = p.BAN.TENBAN,
+                    Tennvlap = p.NHAN_VIEN.TENNV,
+                    Tongtien = p.TONGTIEN
+                }).ToList();
             return kq;
         }
     }

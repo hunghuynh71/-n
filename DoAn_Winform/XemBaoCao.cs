@@ -105,7 +105,7 @@ namespace DoAn_Winform
             DateTime denNgay = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
             cmd.CommandText = "select tu.TENTU, cthd.GIABAN, sum(cthd.SL) as TONGSL, sum(cthd.SL*cthd.GIABAN) as TONGDOANHTHU"
                             + " from THUC_UONG tu, CHI_TIET_HOA_DON cthd, HOA_DON hd"
-                            + " where tu.MATU=cthd.MATU and cthd.MAHD=hd.MAHD and tu.TRANGTHAIXOA=0 and hd.NGAYLAP>='" + string.Format("{0:yyyy-MM-dd HH:mm:ss}", tuNgay) + "' and hd.NGAYLAP<='" + string.Format("{0:yyyy-MM-dd HH:mm:ss}", denNgay) + "'"
+                            + " where tu.MATU=cthd.MATU and cthd.MAHD=hd.MAHD and hd.NGAYLAP>='" + string.Format("{0:yyyy-MM-dd HH:mm:ss}", tuNgay) + "' and hd.NGAYLAP<='" + string.Format("{0:yyyy-MM-dd HH:mm:ss}", denNgay) + "'"
                             + " group by tu.MATU, tu.TENTU, cthd.GIABAN";
             da.SelectCommand = cmd;
 

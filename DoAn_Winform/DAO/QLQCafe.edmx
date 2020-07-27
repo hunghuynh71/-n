@@ -73,9 +73,8 @@
           <Property Name="NGAYLAP" Type="date" Nullable="false" />
           <Property Name="MANVLAP" Type="int" Nullable="false" />
           <Property Name="SOBAN" Type="int" Nullable="false" />
-          <Property Name="TRANGTHAI" Type="int" Nullable="false" />
-          <Property Name="TRANGTHAIXOA" Type="bit" Nullable="false" />
           <Property Name="TONGTIEN" Type="float" Nullable="false" />
+          <Property Name="TRANGTHAI" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="LOAI_THUC_UONG">
           <Key>
@@ -115,7 +114,6 @@
           <Property Name="NGAYLAP" Type="date" Nullable="false" />
           <Property Name="MANVLAP" Type="int" Nullable="false" />
           <Property Name="MADDH" Type="int" Nullable="false" />
-          <Property Name="TRANGTHAIXOA" Type="bit" Nullable="false" />
           <Property Name="TONGTIEN" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -565,9 +563,8 @@
           <Property Name="NGAYLAP" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="MANVLAP" Type="Int32" Nullable="false" />
           <Property Name="SOBAN" Type="Int32" Nullable="false" />
-          <Property Name="TRANGTHAI" Type="Int32" Nullable="false" />
-          <Property Name="TRANGTHAIXOA" Type="Boolean" Nullable="false" />
           <Property Name="TONGTIEN" Type="Double" Nullable="false" />
+          <Property Name="TRANGTHAI" Type="Int32" Nullable="false" />
           <NavigationProperty Name="BAN" Relationship="QUAN_LI_QUAN_CAFE_HBKModel.FK__HOA_DON__SOBAN__5BE2A6F2" FromRole="HOA_DON" ToRole="BAN" />
           <NavigationProperty Name="CHI_TIET_HOA_DON" Relationship="QUAN_LI_QUAN_CAFE_HBKModel.FK__CHI_TIET_H__MAHD__5EBF139D" FromRole="HOA_DON" ToRole="CHI_TIET_HOA_DON" />
           <NavigationProperty Name="NHAN_VIEN" Relationship="QUAN_LI_QUAN_CAFE_HBKModel.FK__HOA_DON__MANVLAP__5AEE82B9" FromRole="HOA_DON" ToRole="NHAN_VIEN" />
@@ -617,7 +614,6 @@
           <Property Name="NGAYLAP" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="MANVLAP" Type="Int32" Nullable="false" />
           <Property Name="MADDH" Type="Int32" Nullable="false" />
-          <Property Name="TRANGTHAIXOA" Type="Boolean" Nullable="false" />
           <Property Name="TONGTIEN" Type="Double" Nullable="false" />
           <NavigationProperty Name="CHI_TIET_PHIEU_NHAP_HANG" Relationship="QUAN_LI_QUAN_CAFE_HBKModel.FK__CHI_TIET___MAPNH__4D94879B" FromRole="PHIEU_NHAP_HANG" ToRole="CHI_TIET_PHIEU_NHAP_HANG" />
           <NavigationProperty Name="DON_DAT_HANG" Relationship="QUAN_LI_QUAN_CAFE_HBKModel.FK_DDH" FromRole="PHIEU_NHAP_HANG" ToRole="DON_DAT_HANG" />
@@ -909,9 +905,8 @@
           <EntitySetMapping Name="HOA_DON">
             <EntityTypeMapping TypeName="QUAN_LI_QUAN_CAFE_HBKModel.HOA_DON">
               <MappingFragment StoreEntitySet="HOA_DON">
-                <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
-                <ScalarProperty Name="TRANGTHAIXOA" ColumnName="TRANGTHAIXOA" />
                 <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+                <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
                 <ScalarProperty Name="SOBAN" ColumnName="SOBAN" />
                 <ScalarProperty Name="MANVLAP" ColumnName="MANVLAP" />
                 <ScalarProperty Name="NGAYLAP" ColumnName="NGAYLAP" />
@@ -955,7 +950,6 @@
             <EntityTypeMapping TypeName="QUAN_LI_QUAN_CAFE_HBKModel.PHIEU_NHAP_HANG">
               <MappingFragment StoreEntitySet="PHIEU_NHAP_HANG">
                 <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
-                <ScalarProperty Name="TRANGTHAIXOA" ColumnName="TRANGTHAIXOA" />
                 <ScalarProperty Name="MADDH" ColumnName="MADDH" />
                 <ScalarProperty Name="MANVLAP" ColumnName="MANVLAP" />
                 <ScalarProperty Name="NGAYLAP" ColumnName="NGAYLAP" />

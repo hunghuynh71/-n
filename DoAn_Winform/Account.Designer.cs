@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAccount));
             this.txtTenTaiKhoan = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -37,8 +38,8 @@
             this.txtMatKhauMoi = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtNhapLaiMatKhau = new System.Windows.Forms.TextBox();
-            this.btnCapNhap = new System.Windows.Forms.Button();
             this.btnThoat = new System.Windows.Forms.Button();
+            this.btnCapNhap = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtTenTaiKhoan
@@ -129,27 +130,31 @@
             this.txtNhapLaiMatKhau.Size = new System.Drawing.Size(298, 30);
             this.txtNhapLaiMatKhau.TabIndex = 4;
             // 
-            // btnCapNhap
-            // 
-            this.btnCapNhap.Location = new System.Drawing.Point(162, 522);
-            this.btnCapNhap.Margin = new System.Windows.Forms.Padding(6);
-            this.btnCapNhap.Name = "btnCapNhap";
-            this.btnCapNhap.Size = new System.Drawing.Size(150, 50);
-            this.btnCapNhap.TabIndex = 5;
-            this.btnCapNhap.Text = "Cập nhật ";
-            this.btnCapNhap.UseVisualStyleBackColor = true;
-            this.btnCapNhap.Click += new System.EventHandler(this.btnThayDoiAccount_Click);
-            // 
             // btnThoat
             // 
-            this.btnThoat.Location = new System.Drawing.Point(453, 522);
+            this.btnThoat.BackgroundImage = global::DoAn_Winform.Properties.Resources.Thoat;
+            this.btnThoat.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnThoat.Location = new System.Drawing.Point(424, 522);
             this.btnThoat.Margin = new System.Windows.Forms.Padding(6);
             this.btnThoat.Name = "btnThoat";
-            this.btnThoat.Size = new System.Drawing.Size(150, 50);
+            this.btnThoat.Size = new System.Drawing.Size(150, 59);
             this.btnThoat.TabIndex = 6;
-            this.btnThoat.Text = "Thoát";
             this.btnThoat.UseVisualStyleBackColor = true;
             this.btnThoat.Click += new System.EventHandler(this.btnThoatAccount_Click);
+            // 
+            // btnCapNhap
+            // 
+            this.btnCapNhap.Image = global::DoAn_Winform.Properties.Resources.HoanThanhSize48;
+            this.btnCapNhap.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCapNhap.Location = new System.Drawing.Point(180, 522);
+            this.btnCapNhap.Margin = new System.Windows.Forms.Padding(6);
+            this.btnCapNhap.Name = "btnCapNhap";
+            this.btnCapNhap.Size = new System.Drawing.Size(150, 59);
+            this.btnCapNhap.TabIndex = 5;
+            this.btnCapNhap.Text = "Cập nhật ";
+            this.btnCapNhap.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCapNhap.UseVisualStyleBackColor = true;
+            this.btnCapNhap.Click += new System.EventHandler(this.btnThayDoiAccount_Click);
             // 
             // frmAccount
             // 
@@ -169,10 +174,16 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtTenTaiKhoan);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(800, 700);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(800, 700);
             this.Name = "frmAccount";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Account";
+            this.Load += new System.EventHandler(this.frmAccount_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

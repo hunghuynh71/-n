@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBanHang));
             this.label1 = new System.Windows.Forms.Label();
             this.nmrSoLuong = new System.Windows.Forms.NumericUpDown();
-            this.btnThemThucUong = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.txtTongTien = new System.Windows.Forms.TextBox();
             this.flpBan = new System.Windows.Forms.FlowLayoutPanel();
@@ -44,11 +44,12 @@
             this.colGiaTU = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colThanhTien = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnThanhToan = new System.Windows.Forms.Button();
-            this.btnChuyenBan = new System.Windows.Forms.Button();
             this.nmrPhanTramGiamGia = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.cboChuyenBan = new System.Windows.Forms.ComboBox();
             this.btnGiamGia = new System.Windows.Forms.Button();
+            this.btnChuyenBan = new System.Windows.Forms.Button();
+            this.btnThemThucUong = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nmrSoLuong)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrPhanTramGiamGia)).BeginInit();
             this.SuspendLayout();
@@ -57,7 +58,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(586, 27);
+            this.label1.Location = new System.Drawing.Point(586, 92);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(112, 25);
             this.label1.TabIndex = 2;
@@ -65,7 +66,7 @@
             // 
             // nmrSoLuong
             // 
-            this.nmrSoLuong.Location = new System.Drawing.Point(1032, 87);
+            this.nmrSoLuong.Location = new System.Drawing.Point(1031, 93);
             this.nmrSoLuong.Minimum = new decimal(new int[] {
             1,
             0,
@@ -79,19 +80,6 @@
             0,
             0,
             0});
-            // 
-            // btnThemThucUong
-            // 
-            this.btnThemThucUong.BackColor = System.Drawing.Color.Silver;
-            this.btnThemThucUong.Enabled = false;
-            this.btnThemThucUong.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThemThucUong.Location = new System.Drawing.Point(1032, 14);
-            this.btnThemThucUong.Name = "btnThemThucUong";
-            this.btnThemThucUong.Size = new System.Drawing.Size(118, 53);
-            this.btnThemThucUong.TabIndex = 4;
-            this.btnThemThucUong.Text = "Thêm";
-            this.btnThemThucUong.UseVisualStyleBackColor = false;
-            this.btnThemThucUong.Click += new System.EventHandler(this.btnThemThucUong_Click);
             // 
             // label4
             // 
@@ -110,7 +98,7 @@
             this.txtTongTien.Location = new System.Drawing.Point(858, 611);
             this.txtTongTien.Name = "txtTongTien";
             this.txtTongTien.ReadOnly = true;
-            this.txtTongTien.Size = new System.Drawing.Size(168, 30);
+            this.txtTongTien.Size = new System.Drawing.Size(154, 30);
             this.txtTongTien.TabIndex = 7;
             // 
             // flpBan
@@ -136,7 +124,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(586, 89);
+            this.label6.Location = new System.Drawing.Point(586, 35);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(146, 25);
             this.label6.TabIndex = 2;
@@ -149,7 +137,7 @@
             this.cboLoaiThucUong.FormattingEnabled = true;
             this.cboLoaiThucUong.Items.AddRange(new object[] {
             "Tất Cả"});
-            this.cboLoaiThucUong.Location = new System.Drawing.Point(727, 86);
+            this.cboLoaiThucUong.Location = new System.Drawing.Point(727, 32);
             this.cboLoaiThucUong.Name = "cboLoaiThucUong";
             this.cboLoaiThucUong.Size = new System.Drawing.Size(286, 33);
             this.cboLoaiThucUong.TabIndex = 2;
@@ -161,7 +149,7 @@
             this.cboThucUong.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboThucUong.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboThucUong.FormattingEnabled = true;
-            this.cboThucUong.Location = new System.Drawing.Point(727, 25);
+            this.cboThucUong.Location = new System.Drawing.Point(727, 90);
             this.cboThucUong.Name = "cboThucUong";
             this.cboThucUong.Size = new System.Drawing.Size(286, 33);
             this.cboThucUong.TabIndex = 3;
@@ -186,44 +174,38 @@
             // colTenTU
             // 
             this.colTenTU.Text = "Tên thức uống";
+            this.colTenTU.Width = 158;
             // 
             // colSL
             // 
             this.colSL.Text = "Số lượng ";
+            this.colSL.Width = 127;
             // 
             // colGiaTU
             // 
             this.colGiaTU.Text = "Giá";
+            this.colGiaTU.Width = 128;
             // 
             // colThanhTien
             // 
             this.colThanhTien.Text = "Thành tiền";
+            this.colThanhTien.Width = 160;
             // 
             // btnThanhToan
             // 
             this.btnThanhToan.BackColor = System.Drawing.Color.Silver;
             this.btnThanhToan.Enabled = false;
             this.btnThanhToan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThanhToan.Location = new System.Drawing.Point(1032, 569);
+            this.btnThanhToan.Image = global::DoAn_Winform.Properties.Resources.HoanThanhSize48;
+            this.btnThanhToan.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnThanhToan.Location = new System.Drawing.Point(1018, 569);
             this.btnThanhToan.Name = "btnThanhToan";
-            this.btnThanhToan.Size = new System.Drawing.Size(118, 72);
+            this.btnThanhToan.Size = new System.Drawing.Size(142, 72);
             this.btnThanhToan.TabIndex = 8;
             this.btnThanhToan.Text = "Thanh toán";
+            this.btnThanhToan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnThanhToan.UseVisualStyleBackColor = false;
             this.btnThanhToan.Click += new System.EventHandler(this.btnThanhToan_Click);
-            // 
-            // btnChuyenBan
-            // 
-            this.btnChuyenBan.BackColor = System.Drawing.Color.Silver;
-            this.btnChuyenBan.Enabled = false;
-            this.btnChuyenBan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChuyenBan.Location = new System.Drawing.Point(589, 540);
-            this.btnChuyenBan.Name = "btnChuyenBan";
-            this.btnChuyenBan.Size = new System.Drawing.Size(126, 60);
-            this.btnChuyenBan.TabIndex = 10;
-            this.btnChuyenBan.Text = "Chuyển bàn";
-            this.btnChuyenBan.UseVisualStyleBackColor = false;
-            this.btnChuyenBan.Click += new System.EventHandler(this.btnChuyenBan_Click);
             // 
             // nmrPhanTramGiamGia
             // 
@@ -264,6 +246,36 @@
             this.btnGiamGia.UseVisualStyleBackColor = true;
             this.btnGiamGia.Click += new System.EventHandler(this.btnGiamGia_Click);
             // 
+            // btnChuyenBan
+            // 
+            this.btnChuyenBan.BackColor = System.Drawing.Color.Silver;
+            this.btnChuyenBan.Enabled = false;
+            this.btnChuyenBan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChuyenBan.Image = global::DoAn_Winform.Properties.Resources.caiBan;
+            this.btnChuyenBan.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnChuyenBan.Location = new System.Drawing.Point(589, 540);
+            this.btnChuyenBan.Name = "btnChuyenBan";
+            this.btnChuyenBan.Size = new System.Drawing.Size(126, 60);
+            this.btnChuyenBan.TabIndex = 10;
+            this.btnChuyenBan.Text = "Chuyển bàn";
+            this.btnChuyenBan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnChuyenBan.UseVisualStyleBackColor = false;
+            this.btnChuyenBan.Click += new System.EventHandler(this.btnChuyenBan_Click);
+            // 
+            // btnThemThucUong
+            // 
+            this.btnThemThucUong.BackColor = System.Drawing.Color.Silver;
+            this.btnThemThucUong.BackgroundImage = global::DoAn_Winform.Properties.Resources.cong;
+            this.btnThemThucUong.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnThemThucUong.Enabled = false;
+            this.btnThemThucUong.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThemThucUong.Location = new System.Drawing.Point(1032, 14);
+            this.btnThemThucUong.Name = "btnThemThucUong";
+            this.btnThemThucUong.Size = new System.Drawing.Size(118, 67);
+            this.btnThemThucUong.TabIndex = 4;
+            this.btnThemThucUong.UseVisualStyleBackColor = false;
+            this.btnThemThucUong.Click += new System.EventHandler(this.btnThemThucUong_Click);
+            // 
             // frmBanHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -289,6 +301,11 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1180, 700);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(1180, 700);
             this.Name = "frmBanHang";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Bán hàng";

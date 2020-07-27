@@ -89,27 +89,90 @@ namespace DoAn_Winform
                 toolThuNgan.Enabled = false;
                 ToolLapHoaDon.Enabled = false;
                 toolXemThongKEThuChi.Enabled = false;
-
                 toolQuanLikho.Enabled = false;
                 toolLapPHieuNhap.Enabled = false;
                 toolDatHang.Enabled = false;
+                đặtHàngToolStripMenuItem.Enabled = false;
+                nhậpHàngToolStripMenuItem.Enabled = false;
+                lậpHóaĐơnToolStripMenuItem.Enabled = false;
+                xemBáoCáoToolStripMenuItem.Enabled = false;
             }
             else if (TaiKhoanGlobal.Loaitaikhoan == 3)
             {
                 toolAdmin.Enabled = false;
-
                 toolQuanLikho.Enabled = false;
                 toolLapPHieuNhap.Enabled = false;
                 toolDatHang.Enabled = false;
+                adminToolStripMenuItem.Enabled = false;
+                đặtHàngToolStripMenuItem.Enabled = false;
+                nhậpHàngToolStripMenuItem.Enabled = false;
+
             }
             else if(TaiKhoanGlobal.Loaitaikhoan == 4)
             {
-                toolThuNgan.Enabled = false;              
-                toolLapPHieuNhap.Enabled = false;
+                toolThuNgan.Enabled = false; 
                 toolXemThongKEThuChi.Enabled = false;
-
                 toolAdmin.Enabled = false;
+                adminToolStripMenuItem.Enabled = false;
+                lậpHóaĐơnToolStripMenuItem.Enabled = false;
+                xemBáoCáoToolStripMenuItem.Enabled = false;
             }
+        }
+
+        private void adminToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            frmAdmin f = new frmAdmin();
+            f.MdiParent = this;
+            f.Show();
+        }
+
+        private void lậpHóaĐơnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmBanHang f = new frmBanHang(TaiKhoanGlobal);
+            f.MdiParent = this;
+            f.Show();
+        }
+
+        private void xemBáoCáoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmChonBaoCao f = new frmChonBaoCao();
+            f.MdiParent = this;
+            f.Show();
+        }
+
+        private void đặtHàngToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            frmDatHang f = new frmDatHang(TaiKhoanGlobal);
+            f.MdiParent = this;
+            f.Show();
+        }
+
+        private void nhậpHàngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmPhieuNhaphag f = new frmPhieuNhaphag(TaiKhoanGlobal);
+            f.MdiParent = this;
+            f.Show();
+        }
+
+        private void chỉnhSửaMậtKhẩuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAccount f = new frmAccount(TaiKhoanGlobal);
+            f.MdiParent = this;
+            f.Show();
+        }
+
+        private void đăngXuấtToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            toolThuNgan.Enabled = true;
+            ToolLapHoaDon.Enabled = true;
+            toolXemThongKEThuChi.Enabled = true;
+
+            toolQuanLikho.Enabled = true;
+            toolLapPHieuNhap.Enabled = true;
+            toolDatHang.Enabled = true;
+
+            toolAdmin.Enabled = true;
+            this.Close();
         }
 
         private void frmHome_Load(object sender, EventArgs e)

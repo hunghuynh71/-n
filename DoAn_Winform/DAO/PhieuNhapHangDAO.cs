@@ -11,7 +11,7 @@ namespace DAO
         QUAN_LI_QUAN_CAFE_HBKEntities1 db = new QUAN_LI_QUAN_CAFE_HBKEntities1();
         public List<PhieuNhapHangDTO> loadDsPNH()
         {
-            return db.PHIEU_NHAP_HANG.Where(p => p.TRANGTHAIXOA == false).OrderByDescending(p=>p.MAPNH).Select(v => new PhieuNhapHangDTO
+            return db.PHIEU_NHAP_HANG.OrderByDescending(p=>p.MAPNH).Select(v => new PhieuNhapHangDTO
             {
                 Mapnh = v.MAPNH,
                 Maddh = v.MADDH,

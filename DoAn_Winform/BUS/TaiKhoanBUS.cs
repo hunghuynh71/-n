@@ -21,7 +21,7 @@ namespace BUS
             return tkTam.LoadDsTK();
         }
 
-        public TaiKhoanDTO TimKiemTK(string tenDN)
+        public List<TaiKhoanDTO> TimKiemTK(string tenDN)
         {
             return tkTam.TimKiemTK(tenDN);
         }
